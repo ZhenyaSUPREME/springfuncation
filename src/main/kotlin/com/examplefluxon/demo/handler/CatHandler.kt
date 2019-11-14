@@ -30,7 +30,7 @@ import reactor.core.publisher.Mono
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(cat2)
     }
     fun create(serverRequest: ServerRequest):Mono<ServerResponse>{
-     var cat:Mono<Cat> = serverRequest.bodyToMono(Cat::class.java)
+        var cat:Mono<Cat> = serverRequest.bodyToMono(Cat::class.java)
         val catMono = serverRequest.bodyToMono(Cat::class.java).flatMap({ cat -> catRepository.save(cat) })
         return ServerResponse.ok().contentType(MediaType.APPLICATION_JSON).body(catMono,Cat::class.java)
     }
